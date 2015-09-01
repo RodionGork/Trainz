@@ -1,0 +1,19 @@
+{
+    "title": "Система диагностики Путевых машин",
+    "background": "#c8dada",
+    "topImage": "img/main_fon.png",
+    "images": [
+        {
+            "image": "img/tu_left.png",
+            "x": 256,
+            "y": 400,
+            "align": "center"
+        },
+        {
+            "image": "img/tu_right.png",
+            "x": 756,
+            "y": 400,
+            "align": "center"
+        }
+    ]
+}

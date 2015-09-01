@@ -1,0 +1,17 @@
+body {
+    font-family: arial;
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+}
+
+#container {
+    width: 1024px;
+    margin: 0px auto;
+}
+
+#header {
+    text-align: center;
+    background: white;
+    padding: 5px;
+}
