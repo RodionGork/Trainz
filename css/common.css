@@ -1,6 +1,6 @@
 body {
     font-family: arial;
-    font-size: 16px;
+    font-size: 20px;
     padding: 0px;
     margin: 0px;
 }
@@ -15,3 +15,9 @@ body {
     background: white;
     padding: 5px;
 }
+
+#controls {
+    position: relative;
+    height: 600px;
+}
+

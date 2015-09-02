@@ -5,15 +5,62 @@
     "images": [
         {
             "image": "img/tu_left.png",
-            "x": 256,
-            "y": 400,
-            "align": "center"
+            "x": 41,
+            "y": 150
         },
         {
             "image": "img/tu_right.png",
-            "x": 756,
-            "y": 400,
-            "align": "center"
+            "x": 533,
+            "y": 150
         }
-    ]
+    ],
+    "labels": [
+        {
+            "text": "Подбивочный блок",
+            "size": "160%",
+            "x": 512,
+            "y": 15,
+            "width": 512
+        },
+        {
+            "text": "Левый",
+            "x": 275, "y": 80, "width": 100
+        },
+        {
+            "text": "Правый",
+            "x": 745, "y": 80, "width": 100
+        },
+        {
+            "text": "2100", "mark": "rate-left",
+            "x": 275, "y": 330, "width": 100
+        },
+        {
+            "text": "2100", "mark": "rate-right",
+            "x": 745, "y": 330, "width": 100
+        },
+        {
+            "text": "об/мин",
+            "x": 275, "y": 353, "width": 100
+        },
+        {
+            "text": "об/мин",
+            "x": 745, "y": 353, "width": 100
+        },
+        {
+            "text": "25 25 25 25", "mark": "temp-left-1",
+            "x": 185, "y": 125, "width": 130
+        },
+        {
+            "text": "25 25 25 25", "mark": "temp-left-2",
+            "x": 370, "y": 125, "width": 130
+        },
+        {
+            "text": "25 25 25 25", "mark": "temp-right-1",
+            "x": 650, "y": 125, "width": 130
+        },
+        {
+            "text": "25 25 25 25", "mark": "temp-right-2",
+            "x": 835, "y": 125, "width": 130
+        }
+    ] 
 }
