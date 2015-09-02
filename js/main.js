@@ -1,14 +1,22 @@
 function Trainz() {
 }
 
-Trainz.prototype.load = function(fileName, dataFeed) {
+Trainz.prototype.load = function(fileName, dataFeed, locale) {
     this.dataFeed = dataFeed;
+    
     var res = $.ajax(fileName, {
         async: false,
         dataType: 'json'
     });
+    var data = JSON.parse(res.responseText);
+
+    res = $.ajax('data/msgs-' + locale + '.json', {
+        async: false,
+        dataType: 'json'
+    });
+    this.messages = JSON.parse(res.responseText);
     
-    this.process(JSON.parse(res.responseText));
+    this.process(data);
 }
 
 Trainz.prototype.process = function(data) {
@@ -34,7 +42,7 @@ Trainz.prototype.addImages = function(block, images) {
 Trainz.prototype.addLabels = function(block, labels) {
     for (var i in labels) {
         var label = labels[i];
-        var elem = $('<span/>').text(label.text).css('display', 'inline-block');
+        var elem = $('<span/>').text(this.localize(label.text)).css('display', 'inline-block');
         var dx = 0;
         if (typeof(label.width) != 'undefined') {
             dx = -label.width / 2;
@@ -60,3 +68,13 @@ Trainz.prototype.update = function() {
     });
 }
 
+Trainz.prototype.localize = function(text) {
+    var obj = this;
+    return text.replace(/\#\{([^\}]+)\}/g, function(x, y) {
+        if (typeof(obj.messages[y]) != 'undefined') {
+            return obj.messages[y];
+        } else {
+            return '?' + y + '?';
+        }
+    });
+}
