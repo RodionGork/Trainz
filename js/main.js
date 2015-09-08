@@ -70,7 +70,8 @@ Trainz.prototype.update = function() {
         for (var key in data) {
             $('.mark-' + key).text(data[key]);
         }
-    }});
+    },
+    error: function(xhr) {alert('Error: ' + xhr.status)}});
 }
 
 Trainz.prototype.localize = function(text) {
