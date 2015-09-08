@@ -60,12 +60,17 @@ Trainz.prototype.addLabels = function(block, labels) {
 }
 
 Trainz.prototype.update = function() {
-    var res = $.get(this.dataFeed, function(data) {
-        data = JSON.parse(data);
+    var res = $.ajax(this.dataFeed, {cache: false, success: function(data) {
+        try {
+            data = JSON.parse(data);
+        } catch (e) {
+            alert("DataSource returned:\n" + data);
+            return;
+        }
         for (var key in data) {
             $('.mark-' + key).text(data[key]);
         }
-    });
+    }});
 }
 
 Trainz.prototype.localize = function(text) {
