@@ -26,6 +26,7 @@ Trainz.prototype.process = function(data) {
     var controls = $("#controls");
     this.addImages(controls, data.images);
     this.addLabels(controls, data.labels);
+    this.addGauges(controls, data.gauges);
     var updater = this;
     setInterval(function() {updater.update()}, 500);
 }
@@ -43,19 +44,44 @@ Trainz.prototype.addLabels = function(block, labels) {
     for (var i in labels) {
         var label = labels[i];
         var elem = $('<span/>').text(this.localize(label.text)).css('display', 'inline-block');
-        var dx = 0;
-        if (typeof(label.width) != 'undefined') {
-            dx = -label.width / 2;
-            elem.css('text-align', 'center').css('width', label.width + 'px');
-        }
+        elem.attr('data-type', 'label');
         elem.css('position', 'absolute').appendTo(block);
-        elem.css('left', (label.x + dx) + 'px').css('top', label.y + 'px');
-        if (typeof(label.size) != 'undefined') {
-            elem.css('font-size', label.size);
-        }
-        if (typeof(label.mark) != 'undefined') {
-            elem.addClass('mark-' + label.mark);
-        }
+        this.applyPosition(elem, label.x, label.y, label.width);
+        this.applySize(elem, label.size);
+        this.applyMark(elem, label.mark);
+    }
+}
+
+Trainz.prototype.applyPosition = function(elem, x, y, w) {
+    var dx = 0;
+    if (typeof(w) != 'undefined') {
+        dx = -w / 2;
+        elem.css('text-align', 'center').css('width', w + 'px');
+    }
+    elem.css('left', (x + dx) + 'px').css('top', y + 'px');
+}
+
+Trainz.prototype.applySize = function(elem, size) {
+    if (typeof(size) != 'undefined') {
+        elem.css('font-size', size);
+    }
+}
+
+Trainz.prototype.applyMark = function(elem, mark) {
+    if (typeof(mark) != 'undefined') {
+        elem.addClass('mark-' + mark);
+    }
+}
+
+Trainz.prototype.addGauges = function(block, gauges) {
+    for (var i in gauges) {
+        var gauge = gauges[i];
+        var elem = $('<span/>').text('value?').css('display', 'inline-block').css('text-align', 'center');
+        elem.attr('data-type', 'gauge');
+        elem.css('position', 'absolute').appendTo(block);
+        this.applyPosition(elem, gauge.x, gauge.y, gauge.width);
+        this.applySize(elem, gauge.size);
+        this.applyMark(elem, gauge.mark);
     }
 }
 
