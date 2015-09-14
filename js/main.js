@@ -52,6 +52,19 @@ Trainz.prototype.addLabels = function(block, labels) {
     }
 }
 
+Trainz.prototype.addGauges = function(block, gauges) {
+    for (var i in gauges) {
+        var gauge = gauges[i];
+        var elem = $('<span/>').text('value?').css('display', 'inline-block').css('text-align', 'center');
+        elem.attr('data-type', 'gauge-rect');
+        elem.attr('data-config', gauge.colors);
+        elem.css('position', 'absolute').appendTo(block);
+        this.applyPosition(elem, gauge.x, gauge.y, gauge.width);
+        this.applySize(elem, gauge.size);
+        this.applyMark(elem, gauge.mark);
+    }
+}
+
 Trainz.prototype.applyPosition = function(elem, x, y, w) {
     var dx = 0;
     if (typeof(w) != 'undefined') {
@@ -73,19 +86,8 @@ Trainz.prototype.applyMark = function(elem, mark) {
     }
 }
 
-Trainz.prototype.addGauges = function(block, gauges) {
-    for (var i in gauges) {
-        var gauge = gauges[i];
-        var elem = $('<span/>').text('value?').css('display', 'inline-block').css('text-align', 'center');
-        elem.attr('data-type', 'gauge');
-        elem.css('position', 'absolute').appendTo(block);
-        this.applyPosition(elem, gauge.x, gauge.y, gauge.width);
-        this.applySize(elem, gauge.size);
-        this.applyMark(elem, gauge.mark);
-    }
-}
-
 Trainz.prototype.update = function() {
+    var self = this;
     var res = $.ajax(this.dataFeed, {cache: false, success: function(data) {
         try {
             data = JSON.parse(data);
@@ -94,10 +96,25 @@ Trainz.prototype.update = function() {
             return;
         }
         for (var key in data) {
-            $('.mark-' + key).text(data[key]);
+            self.updateElem($('.mark-' + key), data[key]);
         }
     },
     error: function(xhr) {alert('Error: ' + xhr.status)}});
+}
+
+Trainz.prototype.updateElem = function(elem, value) {
+    elem.text(value);
+    var type = elem.attr('data-type');
+    if (type == 'gauge-rect') {
+        value *= 1;
+        var config = elem.attr('data-config').split(' ');
+        for (var i = 0; i < config.length; i += 2) {
+            if (parseInt(config[i]) > value) {
+                break;
+            }
+        }
+        elem.css('background', config[i - 1]);
+    }
 }
 
 Trainz.prototype.localize = function(text) {
