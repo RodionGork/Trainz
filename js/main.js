@@ -115,11 +115,13 @@ Trainz.prototype.updateElem = function(elem, value) {
 }
 
 Trainz.prototype.updateGaugeRect = function(elem, value) {
-    var data = value.toString().split(' ');
-    value = data[0];
-    elem.text(value);
     var color = null;
-    if (data.length < 2) {
+    if (typeof(value) == 'object') {
+        color = value[1];
+        value = value[0];
+    }
+    elem.text(value);
+    if (color == null) {
         value *= 1;
         var config = elem.attr('data-config').split(' ');
         for (var i = 0; i < config.length; i += 2) {
@@ -128,8 +130,6 @@ Trainz.prototype.updateGaugeRect = function(elem, value) {
             }
         }
         color = config[i - 1];
-    } else {
-        color = data[1];
     }
     elem.css('background', color);
 }
