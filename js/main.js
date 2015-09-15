@@ -4,19 +4,19 @@ function Trainz() {
 Trainz.prototype.load = function(fileName, dataFeed, locale) {
     this.dataFeed = dataFeed;
     
+    this.config = this.loadJson('data/config.json');
+    var data = this.loadJson(fileName);
+    this.messages = this.loadJson('data/msgs-' + locale + '.json');
+    
+    this.process(data);
+}
+
+Trainz.prototype.loadJson = function(fileName) {
     var res = $.ajax(fileName, {
         async: false,
         dataType: 'json'
     });
-    var data = JSON.parse(res.responseText);
-
-    res = $.ajax('data/msgs-' + locale + '.json', {
-        async: false,
-        dataType: 'json'
-    });
-    this.messages = JSON.parse(res.responseText);
-    
-    this.process(data);
+    return JSON.parse(res.responseText);
 }
 
 Trainz.prototype.process = function(data) {
@@ -28,7 +28,7 @@ Trainz.prototype.process = function(data) {
     this.addLabels(controls, data.labels);
     this.addGauges(controls, data.gauges);
     var updater = this;
-    setInterval(function() {updater.update()}, 500);
+    setInterval(function() {updater.update()}, this.config.interval);
 }
 
 Trainz.prototype.addImages = function(block, images) {
@@ -92,20 +92,34 @@ Trainz.prototype.update = function() {
         try {
             data = JSON.parse(data);
         } catch (e) {
-            alert("DataSource returned:\n" + data);
+            self.errorMessage("DataSource returned:\n" + data);
             return;
         }
         for (var key in data) {
             self.updateElem($('.mark-' + key), data[key]);
         }
     },
-    error: function(xhr) {alert('Error: ' + xhr.status)}});
+    error: function(xhr) {self.errorMessage('Error: ' + xhr.status)}});
 }
 
 Trainz.prototype.updateElem = function(elem, value) {
-    elem.text(value);
     var type = elem.attr('data-type');
-    if (type == 'gauge-rect') {
+    switch (type) {
+        case 'label':
+            elem.text(value);
+            break;
+        case 'gauge-rect':
+            this.updateGaugeRect(elem, value);
+            break;
+    }
+}
+
+Trainz.prototype.updateGaugeRect = function(elem, value) {
+    var data = value.toString().split(' ');
+    value = data[0];
+    elem.text(value);
+    var color = null;
+    if (data.length < 2) {
         value *= 1;
         var config = elem.attr('data-config').split(' ');
         for (var i = 0; i < config.length; i += 2) {
@@ -113,8 +127,11 @@ Trainz.prototype.updateElem = function(elem, value) {
                 break;
             }
         }
-        elem.css('background', config[i - 1]);
+        color = config[i - 1];
+    } else {
+        color = data[1];
     }
+    elem.css('background', color);
 }
 
 Trainz.prototype.localize = function(text) {
@@ -127,3 +144,12 @@ Trainz.prototype.localize = function(text) {
         }
     });
 }
+
+Trainz.prototype.errorMessage = function(msg) {
+    if (this.config.errorAlerts) {
+        alert(msg);
+    } else {
+        console.log(msg);
+    }
+}
+
