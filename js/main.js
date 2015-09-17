@@ -55,21 +55,31 @@ Trainz.prototype.addLabels = function(block, labels) {
 Trainz.prototype.addGauges = function(block, gauges) {
     for (var i in gauges) {
         var gauge = gauges[i];
-        var elem = $('<span/>').text('value?').css('display', 'inline-block').css('text-align', 'center');
-        elem.attr('data-type', 'gauge-rect');
-        elem.attr('data-config', gauge.colors);
+        var elem = $('<span/>').text('').css('display', 'inline-block').css('text-align', 'center');
         elem.css('position', 'absolute').appendTo(block);
-        this.applyPosition(elem, gauge.x, gauge.y, gauge.width);
-        this.applySize(elem, gauge.size);
         this.applyMark(elem, gauge.mark);
+        this.applyPosition(elem, gauge.x, gauge.y, gauge.width, gauge.height);
+        switch (gauge.type) {
+            case 'rect':
+                elem.attr('data-type', 'gauge-rect');
+                elem.attr('data-config', gauge.colors);
+                this.applySize(elem, gauge.size);
+                break;
+            case 'vertical':
+                new VertGauge(elem, gauge.config);
+                break;
+        }
     }
 }
 
-Trainz.prototype.applyPosition = function(elem, x, y, w) {
+Trainz.prototype.applyPosition = function(elem, x, y, w, h) {
     var dx = 0;
     if (typeof(w) != 'undefined') {
         dx = -w / 2;
         elem.css('text-align', 'center').css('width', w + 'px');
+    }
+    if (typeof(h) != 'undefined') {
+        elem.css('height', h + 'px');
     }
     elem.css('left', (x + dx) + 'px').css('top', y + 'px');
 }

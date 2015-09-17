@@ -41,6 +41,11 @@
             "x": 512, "y": 500, "width": 120,
             "size": "140%",
             "mark": "wind-force"
+        },
+        {
+            "type": "vertical",
+            "x": 700, "y": 450, "width": 80, "height": 200,
+            "mark": "water"
         }
     ],
     "labels": [
