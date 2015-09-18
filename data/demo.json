@@ -45,9 +45,19 @@
         {
             "type": "vertical",
             "x": 750, "y": 450, "width": 100, "height": 200,
-            "config": { "step": 100, "smallStep": 50, "middle": 0.7, "flip": true,
-                "colors": [0, "red", 200, "yellow", 450, "#6f6", 700]},
+            "config": {
+                "step": 100, "smallStep": 50, "middle": 0.7, "flip": true,
+                "colors": [0, "red", 200, "yellow", 450, "#6f6", 700]
+            },
             "mark": "water"
+        },
+        {
+            "type": "round",
+            "x": 250, "y": 450, "width": 200, "height": 200,
+            "config": {
+                "step": 10, "colors": [0, "yellow", 30, "#6f6", 40, "yellow", 80]
+            },
+            "mark": "frequency"
         }
     ],
     "labels": [

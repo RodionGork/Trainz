@@ -1,9 +1,7 @@
 function VertGauge(parent, config) {
-    
     this.setup(parent);
     this.parseConfig(config);
     this.drawFull(config);
-    
 }
 
 VertGauge.prototype.setup = function(parent) {
