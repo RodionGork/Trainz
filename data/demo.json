@@ -44,7 +44,9 @@
         },
         {
             "type": "vertical",
-            "x": 700, "y": 450, "width": 80, "height": 200,
+            "x": 750, "y": 450, "width": 100, "height": 200,
+            "config": { "step": 100, "smallStep": 50, "middle": 0.7, "flip": true,
+                "colors": [0, "red", 200, "yellow", 450, "#6f6", 700]},
             "mark": "water"
         }
     ],

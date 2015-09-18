@@ -66,6 +66,7 @@ Trainz.prototype.addGauges = function(block, gauges) {
                 this.applySize(elem, gauge.size);
                 break;
             case 'vertical':
+                elem.attr('data-type', 'gauge-vertical');
                 new VertGauge(elem, gauge.config);
                 break;
         }
@@ -120,6 +121,9 @@ Trainz.prototype.updateElem = function(elem, value) {
             break;
         case 'gauge-rect':
             this.updateGaugeRect(elem, value);
+            break;
+        case 'gauge-vertical':
+            elem.trigger('gauge:update', [value]);
             break;
     }
 }

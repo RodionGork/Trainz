@@ -5,6 +5,7 @@
     "fuel-2": 85,
     "fuel-3": 43,
     "wind-force": [13, "#88f"], 
+    "water": 400,
     "temp-left-1": "48 49 49 50",
     "temp-left-2": "50 48 49 49",
     "temp-right-1": "49 48 50 49",
