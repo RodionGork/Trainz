@@ -21,6 +21,7 @@ VertGauge.prototype.setup = function(parent) {
 VertGauge.prototype.parseConfig = function(config) {
     config.min = config.colors[0];
     config.max = config.colors[config.colors.length - 1];
+    this.flip = typeof(config.flip) != 'undefined' ? config.flip : false;
     this.max = config.max;
     this.low = this.h - 15;
     this.high = 15;
@@ -100,7 +101,7 @@ VertGauge.prototype.drawPointer = function(value) {
     var x = this.middle + 10;
     var y = this.getY(value);
     ctx.fillStyle = '#fff';
-    ctx.fillRect(x - 1, 1, 14, this.h - 1);
+    ctx.fillRect(x - 1, 1, 14, this.h - 2);
     ctx.fillStyle = '#777';
     ctx.lineStyle = '#777';
     ctx.lineWidth = 3;
@@ -117,5 +118,8 @@ VertGauge.prototype.drawPointer = function(value) {
 }
 
 VertGauge.prototype.getY = function(value) {
-    return this.high + this.len * (this.max - value) / this.delta;
+    if (!this.flip) {
+        value = this.max - value;
+    }
+    return this.high + this.len * value / this.delta;
 }
