@@ -55,7 +55,8 @@
             "type": "round",
             "x": 250, "y": 450, "width": 200, "height": 200,
             "config": {
-                "step": 10, "colors": [0, "yellow", 30, "#6f6", 40, "yellow", 80]
+                "step": 10, "radiusLabel": 0.75, "radiusPointer": 0.60,
+                "colors": [0, "yellow", 30, "#6f6", 40, "yellow", 80]
             },
             "mark": "frequency"
         }
