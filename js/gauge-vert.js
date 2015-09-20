@@ -27,6 +27,8 @@ VertGauge.prototype.parseConfig = function(config) {
     this.delta = config.max - config.min;
     var middle = typeof(config.middle) != 'undefined' ? config.middle : 0.75;
     this.middle = Math.round(this.w * middle);
+    this.bColor = typeof(config.bColor) != 'undefined' ? config.bColor : '#fff';
+    this.fColor = typeof(config.fColor) != 'undefined' ? config.fColor : '#777';
 }
 
 VertGauge.prototype.drawFull = function(config) {
@@ -39,7 +41,7 @@ VertGauge.prototype.drawFull = function(config) {
 
 VertGauge.prototype.drawFrame = function(ctx) {
     ctx.strokeStyle = '#999';
-    ctx.fillStyle = '#fff';
+    ctx.fillStyle = this.bColor;
     ctx.beginPath();
     ctx.moveTo(0, 0);
     ctx.lineTo(0, this.h);
@@ -70,8 +72,8 @@ VertGauge.prototype.drawSteps = function(ctx, config) {
     var smallLength = 10;
     var largeLength = 20;
     var len = this.low - this.high;
-    ctx.strokeStyle = '#777';
-    ctx.fillStyle = '#777';
+    ctx.strokeStyle = this.fColor;
+    ctx.fillStyle = this.fColor;
     ctx.lineWidth = 2;
     for (var t = config.min; t < config.max; t += config.smallStep) {
         ctx.beginPath();
@@ -97,10 +99,10 @@ VertGauge.prototype.drawPointer = function(value) {
     var ctx = this.context;
     var x = this.middle + 10;
     var y = this.getY(value);
-    ctx.fillStyle = '#fff';
+    ctx.fillStyle = this.bColor;
     ctx.fillRect(x - 1, 1, 14, this.h - 2);
-    ctx.fillStyle = '#777';
-    ctx.lineStyle = '#777';
+    ctx.fillStyle = this.fColor;
+    ctx.lineStyle = this.fColor;
     ctx.lineWidth = 3;
     ctx.beginPath();
     ctx.moveTo(x + 8, this.getY(this.max - this.delta));

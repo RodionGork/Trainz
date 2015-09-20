@@ -34,6 +34,8 @@ RoundGauge.prototype.parseConfig = function(config) {
     var radiusPointer = typeof(config.radiusPointer) != 'undefined'
         ? config.radiusPointer : 0.5;
     this.radiusPointer = Math.round(this.cx * radiusPointer);
+    this.bColor = typeof(config.bColor) != 'undefined' ? config.bColor : '#fff';
+    this.fColor = typeof(config.fColor) != 'undefined' ? config.fColor : '#777';
 }
 
 RoundGauge.prototype.angle = function(value) {
@@ -59,7 +61,7 @@ RoundGauge.prototype.drawFull = function(config) {
 
 RoundGauge.prototype.drawFrame = function(ctx) {
     ctx.strokeStyle = '#999';
-    ctx.fillStyle = '#fff';
+    ctx.fillStyle = this.bColor;
     ctx.beginPath();
     ctx.moveTo(0, 0);
     ctx.lineTo(0, this.h);
@@ -85,8 +87,8 @@ RoundGauge.prototype.drawColors = function(ctx, config) {
 }
 
 RoundGauge.prototype.drawSteps = function(ctx, config) {
-    ctx.strokeStyle = '#fff';
-    ctx.fillStyle = '#777';
+    ctx.strokeStyle = this.bColor;
+    ctx.fillStyle = this.fColor;
     ctx.lineWidth = 2;
     ctx.font = 'bold 10pt Sans Serif';
     ctx.textAlign = 'center';
@@ -109,28 +111,28 @@ RoundGauge.prototype.drawPointer = function(value) {
     ctx.beginPath();
     ctx.arc(this.cx, this.cy, this.radiusPointer, 0, Math.PI * 2);
     ctx.closePath();
-    ctx.fillStyle = '#fff';
+    ctx.fillStyle = this.bColor;
     ctx.fill();
     ctx.beginPath();
     ctx.moveTo(this.cx, this.cy);
     ctx.lineTo(this.polarX(this.radiusPointer, value), this.polarY(this.radiusPointer, value));
-    ctx.strokeStyle = '#777';
+    ctx.strokeStyle = this.fColor;
     ctx.stroke();
     ctx.beginPath();
     ctx.arc(this.cx, this.cy, Math.round(this.radiusPointer * 0.1), 0, Math.PI * 2);
     ctx.closePath();
-    ctx.fillStyle = '#777';
+    ctx.fillStyle = this.fColor;
     ctx.fill();
     ctx.font = 'bold 14pt Sans Serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     var x = this.cx;
     var y = this.h - 15;
-    ctx.fillStyle = '#fff';
+    ctx.fillStyle = this.bColor;
     var measure = ctx.measureText(this.prevValue + '');
     ctx.fillRect(x - measure.width / 2 - 1, y - 20 / 2 - 1, measure.width + 2, 20 + 2);
     this.prevValue = value;
-    ctx.fillStyle = '#777';
+    ctx.fillStyle = this.fColor;
     ctx.fillText(value + '', x, y);
 }
 

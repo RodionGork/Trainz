@@ -47,6 +47,7 @@
             "x": 750, "y": 450, "width": 100, "height": 200,
             "config": {
                 "step": 100, "smallStep": 50, "middle": 0.7, "flip": true,
+                "bColor": "#eee", "fColor": "black",
                 "colors": [0, "red", 200, "yellow", 450, "#6f6", 700]
             },
             "mark": "water"
@@ -56,6 +57,7 @@
             "x": 250, "y": 450, "width": 200, "height": 200,
             "config": {
                 "step": 10, "radiusLabel": 0.75, "radiusPointer": 0.60,
+                "bColor": "#eee", "fColor": "black",
                 "colors": [0, "yellow", 30, "#6f6", 40, "yellow", 80]
             },
             "mark": "frequency"
