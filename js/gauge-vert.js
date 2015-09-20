@@ -74,7 +74,7 @@ VertGauge.prototype.drawSteps = function(ctx, config) {
     var len = this.low - this.high;
     ctx.strokeStyle = this.fColor;
     ctx.fillStyle = this.fColor;
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1;
     for (var t = config.min; t < config.max; t += config.smallStep) {
         ctx.beginPath();
         var y = this.getY(t);
@@ -85,6 +85,7 @@ VertGauge.prototype.drawSteps = function(ctx, config) {
     ctx.font = 'bold 10pt Sans Serif';
     ctx.textAlign = 'end';
     ctx.textBaseline = 'middle';
+    ctx.lineWidth = 2;
     for (var t = config.min; t <= config.max + this.delta * 1e-7; t += config.step) {
         ctx.beginPath();
         var y = this.getY(t);
