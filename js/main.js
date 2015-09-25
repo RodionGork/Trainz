@@ -21,7 +21,7 @@ Trainz.prototype.loadJson = function(fileName) {
 
 Trainz.prototype.process = function(data) {
     $('body').css('background', data.background);
-    $('#header').text(data.title);
+    $('#header').text(this.localize(data.title));
     $('<img/>').attr('src', data.topImage).appendTo($("#top-image-block"));
     var controls = $("#controls");
     this.addImages(controls, data.images);
