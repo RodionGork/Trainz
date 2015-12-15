@@ -2,8 +2,7 @@
     "image": "img/main_fon.png",
     "main": {
         "config": "data/demo.json",
-        "dataSource": "data/demo-source",
-        "locale": "ru"
+        "dataSource": "data/demo-source"
     },
     "zones": [
         {
@@ -13,8 +12,7 @@
             "height": 50,
             "hint": "#{uranium.reactor}",
             "config": "data/demo-2.json",
-            "dataSource": "data/demo-source",
-            "locale": "ru"
+            "dataSource": "data/demo-source"
         }
     ]
 }

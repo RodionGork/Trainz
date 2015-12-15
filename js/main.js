@@ -6,6 +6,9 @@ Trainz.prototype.load = function(fileName, dataFeed, locale) {
     
     this.config = this.loadJson('data/config.json');
     var data = this.loadJson(fileName);
+    if (typeof(locale) == 'undefined') {
+        locale = this.config.locale;
+    }
     this.messages = this.loadJson('data/msgs-' + locale + '.json');
     
     this.process(data);
