@@ -1,7 +1,7 @@
 {
     "title": "#{mainTitle}",
     "background": "#c8dada",
-    "topImage": "img/main_fon.png",
+    "topImage": "data/top-map-1.json",
     "images": [
         {
             "image": "img/tu_left.png",

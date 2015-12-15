@@ -21,3 +21,13 @@ body {
     height: 600px;
 }
 
+.zone {
+    position: absolute;
+    cursor: pointer;
+    border: 5px solid #0f0;
+}
+
+.zone:hover {
+    border: 5px solid #f66;
+}
+

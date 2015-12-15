@@ -22,8 +22,11 @@ Trainz.prototype.loadJson = function(fileName) {
 Trainz.prototype.process = function(data) {
     $('body').css('background', data.background);
     $('#header').text(this.localize(data.title));
-    $('<img/>').attr('src', data.topImage).appendTo($("#top-image-block"));
+    if (typeof(data.topImage) != 'undefined') {
+        this.imageMap = new ImageMap(this, data.topImage);
+    }
     var controls = $("#controls");
+    controls.empty();
     this.addImages(controls, data.images);
     this.addLabels(controls, data.labels);
     this.addGauges(controls, data.gauges);

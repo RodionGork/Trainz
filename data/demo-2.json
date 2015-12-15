@@ -1,0 +1,45 @@
+{
+    "title": "Другая Страница",
+    "background": "#c8dada",
+    "images": [
+        {
+            "image": "img/tu_right.png",
+            "x": 41,
+            "y": 150
+        },
+        {
+            "image": "img/tu_left.png",
+            "x": 533,
+            "y": 150
+        }
+    ],
+    "gauges": [
+        {
+            "type": "round",
+            "x": 500, "y": 380, "width": 200, "height": 200,
+            "config": {
+                "step": 10, "radiusLabel": 0.75, "radiusPointer": 0.60,
+                "bColor": "#eee", "fColor": "black",
+                "colors": [0, "red", 30, "yellow", 90, "green", 100]
+            },
+            "mark": "enrichment"
+        }
+    ],
+    "labels": [
+        {
+            "text": "#{uranium.reactor}",
+            "size": "160%",
+            "x": 512,
+            "y": 15,
+            "width": 512
+        },
+        {
+            "text": "Левый",
+            "x": 275, "y": 80, "width": 100
+        },
+        {
+            "text": "#{right}",
+            "x": 745, "y": 80, "width": 100
+        }
+    ] 
+}
