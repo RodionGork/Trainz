@@ -30,8 +30,10 @@ Trainz.prototype.process = function(data) {
     this.addImages(controls, data.images);
     this.addLabels(controls, data.labels);
     this.addGauges(controls, data.gauges);
-    var updater = this;
-    setInterval(function() {updater.update()}, this.config.interval);
+    if (typeof(this.timer) == 'undefined') {
+        var updater = this;
+        this.timer = setInterval(function() {updater.update()}, this.config.interval);
+    }
 }
 
 Trainz.prototype.addImages = function(block, images) {
