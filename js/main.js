@@ -70,6 +70,9 @@ Trainz.prototype.addGauges = function(block, gauges) {
         switch (gauge.type) {
             case 'rect':
                 elem.attr('data-type', 'gauge-rect');
+                if (typeof(gauge.colors) == 'object' && typeof(gauge.colors.join) == 'function') {
+                    gauge.colors = gauge.colors.join(' ');
+                }
                 elem.attr('data-config', gauge.colors);
                 this.applySize(elem, gauge.size);
                 break;

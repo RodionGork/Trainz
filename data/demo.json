@@ -18,21 +18,21 @@
         {
             "type": "rect",
             "x": 412, "y": 450, "width": 80,
-            "colors": "0 #6f6 50 yellow 80 red 100",
+            "colors": [0, "#6f6", 50, "yellow", 80, "red", 100],
             "size": "140%",
             "mark": "fuel-1"
         },
         {
             "type": "rect",
             "x": 512, "y": 450, "width": 80,
-            "colors": "0 #6f6 50 yellow 80 red 100",
+            "colors": [0, "#6f6", 50, "yellow", 80, "red", 100],
             "size": "140%",
             "mark": "fuel-2"
         },
         {
             "type": "rect",
             "x": 612, "y": 450, "width": 80,
-            "colors": "0 #6f6 50 yellow 80 red 100",
+            "colors": [0, "#6f6", 50, "yellow", 80, "red", 100],
             "size": "140%",
             "mark": "fuel-3"
         },
