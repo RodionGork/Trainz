@@ -20,7 +20,9 @@ VertGauge.prototype.parseConfig = function(config) {
     config.min = config.colors[0];
     config.max = config.colors[config.colors.length - 1];
     this.flip = typeof(config.flip) != 'undefined' ? config.flip : false;
+    this.min = config.min;
     this.max = config.max;
+    this.outlie = (this.max - this.min) / 20;
     this.low = this.h - 15;
     this.high = 15;
     this.len = this.low - this.high;
@@ -97,6 +99,8 @@ VertGauge.prototype.drawSteps = function(ctx, config) {
 }
 
 VertGauge.prototype.drawPointer = function(value) {
+    value = Math.max(value, this.min - this.outlie);
+    value = Math.min(value, this.max + this.outlie);
     var ctx = this.context;
     var x = this.middle + 10;
     var y = this.getY(value);

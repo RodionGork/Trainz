@@ -26,6 +26,7 @@ RoundGauge.prototype.parseConfig = function(config) {
     this.cy = this.h / 2;
     this.min = config.min;
     this.max = config.max;
+    this.outlie = (this.max - this.min) / 20;
     this.prevValue = this.min;
     this.delta = config.max - config.min;
     var radiusLabel = typeof(config.radiusLabel) != 'undefined'
@@ -107,6 +108,9 @@ RoundGauge.prototype.drawSteps = function(ctx, config) {
 }
 
 RoundGauge.prototype.drawPointer = function(value) {
+    var valueT = value;
+    value = Math.max(value, this.min - this.outlie);
+    value = Math.min(value, this.max + this.outlie);
     var ctx = this.context;
     ctx.beginPath();
     ctx.arc(this.cx, this.cy, this.radiusPointer, 0, Math.PI * 2);
@@ -131,8 +135,8 @@ RoundGauge.prototype.drawPointer = function(value) {
     ctx.fillStyle = this.bColor;
     var measure = ctx.measureText(this.prevValue + '');
     ctx.fillRect(x - measure.width / 2 - 1, y - 20 / 2 - 1, measure.width + 2, 20 + 2);
-    this.prevValue = value;
+    this.prevValue = valueT;
     ctx.fillStyle = this.fColor;
-    ctx.fillText(value + '', x, y);
+    ctx.fillText(valueT + '', x, y);
 }
 
