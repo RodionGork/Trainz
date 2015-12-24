@@ -124,6 +124,8 @@ VertGauge.prototype.drawPointer = function(value) {
 VertGauge.prototype.getY = function(value) {
     if (!this.flip) {
         value = this.max - value;
-    }
+    } else {
+        value = value - this.min;
+    } 
     return this.high + this.len * value / this.delta;
 }
