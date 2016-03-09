@@ -12,6 +12,18 @@ Trainz.prototype.load = function(fileName, dataFeed, locale) {
     this.messages = this.loadJson('data/msgs-' + locale + '.json');
     
     this.process(data);
+    
+    this.setupReload(fileName, dataFeed, locale);
+}
+
+Trainz.prototype.reloadOrLoad = function(fileName, dataFeed, locale) {
+    if (sessionStorage.getItem('reload')) {
+        sessionStorage.removeItem('reload');
+        fileName = sessionStorage.getItem('fileName');
+        dataFeed = sessionStorage.getItem('dataFeed');
+        locale = sessionStorage.getItem('locale');
+    }
+    this.load(fileName, dataFeed, locale);
 }
 
 Trainz.prototype.loadJson = function(fileName) {
@@ -162,6 +174,20 @@ Trainz.prototype.updateGaugeRect = function(elem, value) {
         color = config[i - 1];
     }
     elem.css('background', color);
+}
+
+Trainz.prototype.setupReload = function(fileName, dataFeed, locale) {
+    var self = this;
+    if (typeof(this.config.reloadInterval) != 'number') {
+        return;
+    }
+    sessionStorage.setItem('fileName', fileName);
+    sessionStorage.setItem('dataFeed', dataFeed);
+    sessionStorage.setItem('locale', locale);
+    setTimeout(function() {
+        sessionStorage.setItem('reload', true);
+        location.reload(true);
+    }, this.config.reloadInterval);
 }
 
 Trainz.prototype.localize = function(text) {

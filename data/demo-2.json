@@ -1,6 +1,7 @@
 {
     "title": "Другая Страница",
     "background": "#c8dada",
+    "topImage": "data/top-map-1.json",
     "images": [
         {
             "image": "img/tu_right.png",
