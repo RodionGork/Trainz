@@ -39,6 +39,7 @@ Trainz.prototype.process = function(data) {
     $('#header').text(this.localize(data.title));
     if (typeof(data.topImage) != 'undefined') {
         this.imageMap = new ImageMap(this, data.topImage);
+        this.loadTopControls();
     }
     var controls = $("#controls");
     controls.empty();
@@ -48,6 +49,22 @@ Trainz.prototype.process = function(data) {
     if (typeof(this.timer) == 'undefined') {
         var updater = this;
         this.timer = setInterval(function() {updater.update()}, this.config.interval);
+    }
+}
+
+Trainz.prototype.loadTopControls = function() {
+    var topImageBlock = this.imageMap.topImageBlock;
+    var topImageData = this.imageMap.data;
+    if (topImageData) {
+        if (typeof(topImageData.images) == 'object') {
+            this.addImages(topImageBlock, topImageData.images);
+        }
+        if (typeof(topImageData.labels) == 'object') {
+            this.addLabels(topImageBlock, topImageData.labels);
+        }
+        if (typeof(topImageData.gauges) == 'object') {
+            this.addGauges(topImageBlock, topImageData.gauges);
+        }
     }
 }
 

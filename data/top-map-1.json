@@ -14,6 +14,15 @@
             "config": "data/demo-2.json",
             "dataSource": "data/demo-source"
         }
+    ],
+    "gauges": [
+        {
+            "type": "rect",
+            "x": 70, "y": 10, "width": 80,
+            "colors": [0, "#6f6", 50, "yellow", 80, "red", 100],
+            "size": "140%",
+            "mark": "fuel-51"
+        }
     ]
 }
 

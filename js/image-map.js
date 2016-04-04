@@ -5,10 +5,11 @@ function ImageMap(trainz, descriptor) {
     
     if (this.isImageUrl(descriptor)) {
         this.plainImage(descriptor);
+        this.data = null;
     } else {
-        var data = trainz.loadJson(descriptor);
-        this.plainImage(data.image);
-        this.loadMap(data);
+        this.data = trainz.loadJson(descriptor);
+        this.plainImage(this.data.image);
+        this.loadMap(this.data);
     }
 }
 

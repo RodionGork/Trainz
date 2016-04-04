@@ -4,6 +4,7 @@
     "fuel-1": 70,
     "fuel-2": 85,
     "fuel-3": 43,
+    "fuel-51": 51,
     "wind-force": [13, "#88f"], 
     "water": 400,
     "frequency": 33,
