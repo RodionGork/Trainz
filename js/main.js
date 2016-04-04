@@ -83,9 +83,23 @@ Trainz.prototype.addLabels = function(block, labels) {
         var elem = $('<span/>').text(this.localize(label.text)).css('display', 'inline-block');
         elem.attr('data-type', 'label');
         elem.css('position', 'absolute').appendTo(block);
+        this.applyLabelColors(elem, label.border, label.background, label.foreground);
         this.applyPosition(elem, label.x, label.y, label.width);
         this.applySize(elem, label.size);
         this.applyMark(elem, label.mark);
+        this.applyAction(elem, label.url, label.confirmation);
+    }
+}
+
+Trainz.prototype.applyLabelColors = function(elem, border, bgr, fgr) {
+    if (typeof(border) == 'string') {
+        elem.css('border', border);
+    }
+    if (typeof(bgr) == 'string') {
+        elem.css('background-color', bgr);
+    }
+    if (typeof(fgr) == 'string') {
+        elem.css('color', fgr);
     }
 }
 
@@ -139,6 +153,19 @@ Trainz.prototype.applyMark = function(elem, mark) {
     if (typeof(mark) != 'undefined') {
         elem.addClass('mark-' + mark);
     }
+}
+
+Trainz.prototype.applyAction = function(elem, action, confirmation) {
+    if (typeof(action) != 'string') {
+        return;
+    }
+    var conf = (typeof(confirmation) == 'boolean' && confirmation);
+    elem.css('cursor', 'pointer');
+    elem.click(function() {
+        $.ajax(action, {"error": function(data) {
+            alert("Error: " + data.status);
+        }});
+    });
 }
 
 Trainz.prototype.update = function() {

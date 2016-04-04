@@ -110,6 +110,12 @@
         {
             "text": "25 25 25 25", "mark": "temp-right-2",
             "x": 835, "y": 125, "width": 130
+        },
+        {
+            "text": "Кнопка", "size": "130%",
+            "x": 900, "y": 50, "width": 90,
+            "border": "#000080", "background": "#0000cc", "foreground": "yellow",
+            "url": "./data/demo-action"
         }
     ] 
 }
