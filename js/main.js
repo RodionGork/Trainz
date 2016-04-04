@@ -159,9 +159,12 @@ Trainz.prototype.applyAction = function(elem, action, confirmation) {
     if (typeof(action) != 'string') {
         return;
     }
-    var conf = (typeof(confirmation) == 'boolean' && confirmation);
+    var conf = typeof(confirmation) == 'string' ? confirmation : null;
     elem.css('cursor', 'pointer');
     elem.click(function() {
+        if (conf && !confirm(conf)) {
+            return false;
+        }
         $.ajax(action, {"error": function(data) {
             alert("Error: " + data.status);
         }});

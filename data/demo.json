@@ -115,7 +115,8 @@
             "text": "Кнопка", "size": "130%",
             "x": 900, "y": 50, "width": 90,
             "border": "#000080", "background": "#0000cc", "foreground": "yellow",
-            "url": "./data/demo-action"
+            "url": "./data/demo-action",
+            "confirmation": "Вы уверены?"
         }
     ] 
 }
