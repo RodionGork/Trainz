@@ -54,7 +54,7 @@
         },
         {
             "type": "round",
-            "x": 250, "y": 450, "width": 200, "height": 200,
+            "x": 220, "y": 450, "width": 230, "height": 230,
             "config": {
                 "step": 10, "radiusLabel": 0.75, "radiusPointer": 0.60,
                 "bColor": "#eee", "fColor": "black",
@@ -113,7 +113,8 @@
         },
         {
             "text": "0", "mark": "water",
-            "x": 820, "y": 550, "width": 50
+            "x": 750, "y": 655, "width": 80,
+            "background": "#eee", "border": "1px solid #bbb"
         },
         {
             "text": "Кнопка", "size": "130%",
