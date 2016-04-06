@@ -111,7 +111,12 @@ Trainz.prototype.addGauges = function(block, gauges) {
         this.applyMark(elem, gauge.mark);
         this.applyPosition(elem, gauge.x, gauge.y, gauge.width, gauge.height);
         switch (gauge.type) {
+            case 'oval':
+                elem.css('border-radius', '50%');
             case 'rect':
+                if (typeof(gauge.height) != 'undefined') {
+                    elem.css('line-height', gauge.height + 'px');
+                }
                 elem.attr('data-type', 'gauge-rect');
                 if (typeof(gauge.colors) == 'object' && typeof(gauge.colors.join) == 'function') {
                     gauge.colors = gauge.colors.join(' ');
@@ -181,7 +186,9 @@ Trainz.prototype.update = function() {
             return;
         }
         for (var key in data) {
-            self.updateElem($('.mark-' + key), data[key]);
+            $('.mark-' + key).each(function(idx, elem) {
+                self.updateElem($(elem), data[key]);
+            });
         }
     },
     error: function(xhr) {self.errorMessage('Error: ' + xhr.status)}});

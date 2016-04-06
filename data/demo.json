@@ -37,8 +37,8 @@
             "mark": "fuel-3"
         },
         {
-            "type": "rect",
-            "x": 512, "y": 500, "width": 120,
+            "type": "oval",
+            "x": 512, "y": 500, "width": 70, "height": 70,
             "size": "140%",
             "mark": "wind-force"
         },
@@ -110,6 +110,10 @@
         {
             "text": "25 25 25 25", "mark": "temp-right-2",
             "x": 835, "y": 125, "width": 130
+        },
+        {
+            "text": "0", "mark": "water",
+            "x": 820, "y": 550, "width": 50
         },
         {
             "text": "Кнопка", "size": "130%",
