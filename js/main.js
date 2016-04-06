@@ -159,7 +159,7 @@ Trainz.prototype.applyAction = function(elem, action, confirmation) {
     if (typeof(action) != 'string') {
         return;
     }
-    var conf = typeof(confirmation) == 'string' ? confirmation : null;
+    var conf = typeof(confirmation) == 'string' ? this.localize(confirmation) : null;
     elem.css('cursor', 'pointer');
     elem.click(function() {
         if (conf && !confirm(conf)) {

@@ -3,5 +3,6 @@
     "obmin": "об/мин",
     "left": "Левый",
     "right": "Правый",
-    "uranium.reactor": "Паровой Двигатель"
+    "uranium.reactor": "Паровой Двигатель",
+    "areyousure": "Вы точно уверены?"
 }
