@@ -217,6 +217,10 @@ Trainz.prototype.updateGaugeRect = function(elem, value) {
         value = value[0];
     }
     elem.text(value);
+    if (typeof(value) != 'number') {
+        elem.css('background', '');
+        return;
+    }
     if (color == null) {
         value *= 1;
         var config = elem.attr('data-config').split(' ');
