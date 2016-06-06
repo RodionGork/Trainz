@@ -222,7 +222,9 @@ Trainz.prototype.update = function() {
     var self = this;
     var res = $.ajax(this.dataFeed, {cache: false, success: function(data) {
         try {
-            data = JSON.parse(data);
+            if (typeof(data) == 'string') {
+                data = JSON.parse(data);
+            }
         } catch (e) {
             self.errorMessage("DataSource returned:\n" + data);
             return;
