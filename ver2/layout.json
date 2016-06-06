@@ -84,6 +84,48 @@
             "mark": "power-voltage"
         },
         {
+            "type": "image",
+            "x": 140, "y": 350, "width": 150, "height": 90,
+            "config": {"image": "img/elevation.png"},
+            "mark": "elevation-before"
+        },
+        {
+            "type": "image",
+            "x": 140, "y": 490, "width": 150, "height": 90,
+            "config": {"image": "img/pru.png"},
+            "mark": "elevation-pru"
+        },
+        {
+            "type": "image",
+            "x": 140, "y": 630, "width": 150, "height": 90,
+            "config": {"image": "img/elevation.png"},
+            "mark": "elevation-after"
+        },
+        {
+            "type": "image",
+            "x": 440, "y": 350, "width": 170, "height": 90,
+            "config": {"image": "img/grohot.png"},
+            "mark": "grohot"
+        },
+        {
+            "type": "image",
+            "x": 440, "y": 490, "width": 150, "height": 90,
+            "config": {"image": "img/pru.png"},
+            "mark": "position-pru"
+        },
+        {
+            "type": "image",
+            "x": 440, "y": 630, "width": 250, "height": 90,
+            "config": {"image": ["img/balka.png", "img/balka-lt.png", "img/balka-rt.png"]},
+            "mark": "balka"
+        },
+        {
+            "type": "image",
+            "x": 320, "y": 350, "width": 20, "height": 20,
+            "config": {"image": "img/arrow.png"},
+            "mark": "grohot-arrow"
+        },
+        {
             "type": "bar",
             "x": 440, "y": 220, "width": 240, "height": 30,
             "config": {"text": "Скорость вала"},
@@ -215,6 +257,10 @@
             "border": "2px solid #808080", "background": "#e8e5d4", "foreground": "black",
             "url": "ver2/finish-action",
             "confirmation": "#{areyousure}"
+        },
+        {
+            "text": "", "mark": "grohot-lt", "size": "70%",
+            "x": 350, "y": 350, "width": 50
         }
     ]
 }

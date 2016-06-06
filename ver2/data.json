@@ -12,6 +12,14 @@
     "cur-grohot": [0.89, "30A", "#fa0000"],
     "press-1": [0.39, "110атм", "#00fafa"],
     "press-2": [0.41, "120атм", "#00fafa"],
+    "elevation-before": [7],
+    "elevation-pru": [-10],
+    "elevation-after": [3],
+    "grohot": [-5],
+    "position-pru": [5],
+    "balka": [4, 1],
+    "grohot-arrow": [180],
+    "grohot-lt": "2 град",
     "clock": "12:05:09"
 }
 

@@ -168,6 +168,10 @@ Trainz.prototype.addGauges = function(block, gauges) {
                 elem.attr('data-type', 'gauge-round');
                 new RoundGauge(elem, gauge.config);
                 break;
+            case 'image':
+                elem.attr('data-type', 'gauge-image');
+                new ImageGauge(elem, gauge.config);
+                break;
             case 'bar':
                 elem.attr('data-type', 'gauge-bar');
                 new BarGauge(elem, gauge.config, this);
@@ -249,6 +253,7 @@ Trainz.prototype.updateElem = function(elem, value) {
             break;
         case 'gauge-vertical':
         case 'gauge-round':
+        case 'gauge-image':
         case 'gauge-bar':
             elem.trigger('gauge:update', [value]);
             break;
