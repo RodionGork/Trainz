@@ -1,4 +1,7 @@
 {
+    "layoutFile": "data/demo.json",
+    "dataSource": "data/demo-source",
+    "localeFilePrefix": "data/msgs",
     "interval": 1000,
     "errorAlerts": false,
     "locale": "ru",

@@ -2,16 +2,25 @@ function Trainz() {
 }
 
 Trainz.prototype.load = function(fileName, dataFeed, locale) {
-    this.dataFeed = dataFeed;
+    var layout = null;
+    if (typeof(dataFeed) == 'undefined') {
+        this.config = this.loadJson(fileName);
+        this.dataFeed = this.config.dataSource;
+        this.localeFilePrefix = this.config.localeFilePrefix;
+        layout = this.loadJson(this.config.layoutFile);
+    } else {
+        this.dataFeed = dataFeed;
+        this.config = this.loadJson('data/config.json');
+        this.localeFilePrefix = 'data/msgs';
+        layout = this.loadJson(fileName);
+    }
     
-    this.config = this.loadJson('data/config.json');
-    var data = this.loadJson(fileName);
     if (typeof(locale) == 'undefined') {
         locale = this.config.locale;
     }
-    this.messages = this.loadJson('data/msgs-' + locale + '.json');
+    this.messages = this.loadJson(this.localeFilePrefix + '-' + locale + '.json');
     
-    this.process(data);
+    this.process(layout);
     
     this.setupReload(fileName, dataFeed, locale);
 }
@@ -36,13 +45,18 @@ Trainz.prototype.loadJson = function(fileName) {
 
 Trainz.prototype.process = function(data) {
     $('body').css('background', data.background);
-    $('#header').text(this.localize(data.title));
+    if (typeof(data.title) != 'undefined') {
+        $('#header').text(this.localize(data.title));
+    } else {
+        $('#header').hide();
+    }
     if (typeof(data.topImage) != 'undefined') {
         this.imageMap = new ImageMap(this, data.topImage);
         this.loadTopControls();
     }
     var controls = $("#controls");
     controls.empty();
+    this.addGroups(controls, data.groups);
     this.addImages(controls, data.images);
     this.addLabels(controls, data.labels);
     this.addGauges(controls, data.gauges);
@@ -84,7 +98,7 @@ Trainz.prototype.addLabels = function(block, labels) {
         elem.attr('data-type', 'label');
         elem.css('position', 'absolute').appendTo(block);
         this.applyLabelColors(elem, label.border, label.background, label.foreground);
-        this.applyPosition(elem, label.x, label.y, label.width);
+        this.applyPosition(elem, label.x, label.y, label.width, label.height);
         this.applySize(elem, label.size);
         this.applyMark(elem, label.mark);
         this.applyAction(elem, label.url, label.confirmation);
@@ -100,6 +114,28 @@ Trainz.prototype.applyLabelColors = function(elem, border, bgr, fgr) {
     }
     if (typeof(fgr) == 'string') {
         elem.css('color', fgr);
+    }
+}
+
+Trainz.prototype.addGroups = function(block, groups) {
+    if (typeof(groups) == 'undefined') {
+        return;
+    }
+    for (var i in groups) {
+        var group = groups[i];
+        var elem = $('<span/>').css('display', 'inline-block');
+        elem.attr('data-type', 'group');
+        elem.css('border', '1px solid #bbbbbb');
+        elem.css('position', 'absolute').appendTo(block);
+        this.applyPosition(elem, group.x, group.y, group.width, group.height, true);
+        elem.css('line-height', '');
+        var text = $('<span/>').css('display', 'inline-block')
+            .css('background', $('body').css('background')).css('padding', '0px 3px');
+        text.css('position', 'relative');
+        this.applyPosition(text, 7, -13);
+        this.applySize(text, '85%');
+        text.appendTo(elem);
+        text.text(this.localize(group.text));
     }
 }
 
@@ -132,18 +168,24 @@ Trainz.prototype.addGauges = function(block, gauges) {
                 elem.attr('data-type', 'gauge-round');
                 new RoundGauge(elem, gauge.config);
                 break;
+            case 'bar':
+                elem.attr('data-type', 'gauge-bar');
+                new BarGauge(elem, gauge.config, this);
         }
     }
 }
 
-Trainz.prototype.applyPosition = function(elem, x, y, w, h) {
+Trainz.prototype.applyPosition = function(elem, x, y, w, h, noCenter) {
     var dx = 0;
     if (typeof(w) != 'undefined') {
-        dx = -w / 2;
-        elem.css('text-align', 'center').css('width', w + 'px');
+        if (typeof(noCenter) == 'undefined') {
+            dx = -w / 2;
+            elem.css('text-align', 'center');
+        }
+        elem.css('width', w + 'px');
     }
     if (typeof(h) != 'undefined') {
-        elem.css('height', h + 'px');
+        elem.css('height', h + 'px').css('line-height', h + 'px');
     }
     elem.css('left', (x + dx) + 'px').css('top', y + 'px');
 }
@@ -205,6 +247,7 @@ Trainz.prototype.updateElem = function(elem, value) {
             break;
         case 'gauge-vertical':
         case 'gauge-round':
+        case 'gauge-bar':
             elem.trigger('gauge:update', [value]);
             break;
     }

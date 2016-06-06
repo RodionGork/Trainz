@@ -1,0 +1,9 @@
+{
+    "layoutFile": "ver2/layout.json",
+    "dataSource": "ver2/data.json",
+    "localeFilePrefix": "ver2/msgs",
+    "interval": 1000,
+    "errorAlerts": false,
+    "locale": "ru",
+    "reloadInterval": null
+}
