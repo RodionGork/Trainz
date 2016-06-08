@@ -57,6 +57,28 @@
                             "x": 140, "y": 20, "width": 150, "height": 90,
                             "config": {"image": "img/elevation.png"},
                             "mark": "elevation-before"
+                        },
+                        {
+                            "type": "image",
+                            "x": 20, "y": 20, "width": 20, "height": 20,
+                            "config": {"image": "img/arrow.png"},
+                            "mark": "elev-b-lt-arrow"
+                        },
+                        {
+                            "type": "image",
+                            "x": 260, "y": 20, "width": 20, "height": 20,
+                            "config": {"image": "img/arrow.png"},
+                            "mark": "elev-b-rt-arrow"
+                        }
+                    ],
+                    "labels": [
+                        {
+                            "text": "", "mark": "elev-b-lt", "size": "70%",
+                            "x": 20, "y": 45, "width": 50
+                        },
+                        {
+                            "text": "", "mark": "elev-b-rt", "size": "70%",
+                            "x": 260, "y": 45, "width": 50
                         }
                     ]
                 },
@@ -69,6 +91,28 @@
                             "x": 140, "y": 20, "width": 150, "height": 90,
                             "config": {"image": "img/pru.png"},
                             "mark": "elevation-pru"
+                        },
+                        {
+                            "type": "image",
+                            "x": 20, "y": 20, "width": 20, "height": 20,
+                            "config": {"image": "img/arrow.png"},
+                            "mark": "elev-p-lt-arrow"
+                        },
+                        {
+                            "type": "image",
+                            "x": 260, "y": 20, "width": 20, "height": 20,
+                            "config": {"image": "img/arrow.png"},
+                            "mark": "elev-p-rt-arrow"
+                        }
+                    ],
+                    "labels": [
+                        {
+                            "text": "", "mark": "elev-p-lt", "size": "70%",
+                            "x": 20, "y": 45, "width": 50
+                        },
+                        {
+                            "text": "", "mark": "elev-p-rt", "size": "70%",
+                            "x": 260, "y": 45, "width": 50
                         }
                     ]
                 },
@@ -81,6 +125,28 @@
                             "x": 140, "y": 20, "width": 150, "height": 90,
                             "config": {"image": "img/elevation.png"},
                             "mark": "elevation-after"
+                        },
+                        {
+                            "type": "image",
+                            "x": 20, "y": 20, "width": 20, "height": 20,
+                            "config": {"image": "img/arrow.png"},
+                            "mark": "elev-z-lt-arrow"
+                        },
+                        {
+                            "type": "image",
+                            "x": 260, "y": 20, "width": 20, "height": 20,
+                            "config": {"image": "img/arrow.png"},
+                            "mark": "elev-z-rt-arrow"
+                        }
+                    ],
+                    "labels": [
+                        {
+                            "text": "", "mark": "elev-z-lt", "size": "70%",
+                            "x": 20, "y": 45, "width": 50
+                        },
+                        {
+                            "text": "", "mark": "elev-z-rt", "size": "70%",
+                            "x": 260, "y": 45, "width": 50
                         }
                     ]
                 }
@@ -140,13 +206,23 @@
                             "type": "image",
                             "x": 20, "y": 20, "width": 20, "height": 20,
                             "config": {"image": "img/arrow.png"},
-                            "mark": "grohot-arrow"
+                            "mark": "grohot-lt-arrow"
+                        },
+                        {
+                            "type": "image",
+                            "x": 260, "y": 20, "width": 20, "height": 20,
+                            "config": {"image": "img/arrow.png"},
+                            "mark": "grohot-rt-arrow"
                         }
                     ],
                     "labels": [
                         {
                             "text": "", "mark": "grohot-lt", "size": "70%",
-                            "x": 50, "y": 20, "width": 50
+                            "x": 30, "y": 40, "width": 50
+                        },
+                        {
+                            "text": "", "mark": "grohot-rt", "size": "70%",
+                            "x": 250, "y": 40, "width": 50
                         }
                     ]
                 },
@@ -156,9 +232,41 @@
                     "gauges": [
                         {
                             "type": "image",
-                            "x": 140, "y": 20, "width": 150, "height": 90,
+                            "x": 140, "y": 30, "width": 150, "height": 90,
                             "config": {"image": "img/pru.png"},
                             "mark": "position-pru"
+                        },
+                        {
+                            "type": "image",
+                            "x": 140, "y": 15, "width": 20, "height": 20,
+                            "config": {"image": "img/arrow.png"},
+                            "mark": "pru-up-arrow"
+                        },
+                        {
+                            "type": "image",
+                            "x": 20, "y": 70, "width": 20, "height": 20,
+                            "config": {"image": "img/arrow.png"},
+                            "mark": "pru-lt-arrow"
+                        },
+                        {
+                            "type": "image",
+                            "x": 260, "y": 70, "width": 20, "height": 20,
+                            "config": {"image": "img/arrow.png"},
+                            "mark": "pru-rt-arrow"
+                        }
+                    ],
+                    "labels": [
+                        {
+                            "text": "", "mark": "pru-up", "size": "70%",
+                            "x": 160, "y": 15, "width": 30
+                        },
+                        {
+                            "text": "", "mark": "pru-lt", "size": "70%",
+                            "x": 30, "y": 85, "width": 50
+                        },
+                        {
+                            "text": "", "mark": "pru-rt", "size": "70%",
+                            "x": 250, "y": 85, "width": 50
                         }
                     ]
                 },
@@ -171,6 +279,16 @@
                             "x": 140, "y": 20, "width": 250, "height": 90,
                             "config": {"image": ["img/balka.png", "img/balka-lt.png", "img/balka-rt.png"]},
                             "mark": "balka"
+                        }
+                    ],
+                    "labels": [
+                        {
+                            "text": "", "mark": "balka-lt", "size": "70%",
+                            "x": 50, "y": 100, "width": 50
+                        },
+                        {
+                            "text": "", "mark": "balka-rt", "size": "70%",
+                            "x": 230, "y": 100, "width": 50
                         }
                     ]
                 }

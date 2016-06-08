@@ -39,11 +39,14 @@ ImageGauge.prototype.drawFull = function(config) {
 }
 
 ImageGauge.prototype.drawPointer = function(value) {
+    var ctx = this.context;
+    ctx.clearRect(0, 0, this.w, this.h);
+    if (typeof(value[0]) != 'number') {
+        return;
+    }
     var angle = value[0] * Math.PI / 180;
     var slide = value.length > 1 ? value[1] : 0;
     var image = this.images[slide];
-    var ctx = this.context;
-    ctx.clearRect(0, 0, this.w, this.h);
     var x = this.w / 2;
     var y = this.h / 2;
     ctx.translate(x, y);
