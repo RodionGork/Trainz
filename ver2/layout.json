@@ -4,241 +4,282 @@
     "groups": [
         {
             "text": "#{machine}",
-            "x": 0, "y": 20, "width": 280, "height": 150
+            "x": 0, "y": 20, "width": 280, "height": 150,
+            "gauges": [
+                {
+                    "type": "bar",
+                    "x": 140, "y": 30, "width": 240, "height": 30,
+                    "config": {"text": "#{path}"},
+                    "mark": "path"
+                },
+                {
+                    "type": "bar",
+                    "x": 140, "y": 70, "width": 240, "height": 30,
+                    "config": {"text": "Скорость"},
+                    "mark": "speed"
+                }
+            ],
+            "labels": [
+                {
+                    "text": "", "mark": "piquet",
+                    "x": 190, "y": 110, "width": 170
+                }
+            ]
         },
         {
             "text": "Сеть",
-            "x": 0, "y": 190, "width": 280, "height": 120
+            "x": 0, "y": 190, "width": 280, "height": 120,
+            "gauges": [
+                {
+                    "type": "bar",
+                    "x": 140, "y": 30, "width": 240, "height": 30,
+                    "config": {"text": "Полный ток", "bColor": "#fafafa"},
+                    "mark": "power-current"
+                },
+                {
+                    "type": "bar",
+                    "x": 140, "y": 70, "width": 240, "height": 30,
+                    "config": {"text": "Напряжение в сети", "bColor": "#fafafa"},
+                    "mark": "power-voltage"
+                }
+            ]
         },
         {
-            "text": "Возвышение перед очисткой",
-            "x": 0, "y": 330, "width": 280, "height": 120
-        },
-        {
-            "text": "Возвышение в зоне ПРУ",
-            "x": 0, "y": 470, "width": 280, "height": 120
-        },
-        {
-            "text": "Возвышение за очисткой",
-            "x": 0, "y": 610, "width": 280, "height": 120
+            "x": 0, "y": 330,
+            "comment": "left column bottom",
+            "groups": [
+                {
+                    "text": "Возвышение перед очисткой",
+                    "x": 0, "y": 0, "width": 280, "height": 120,
+                    "gauges": [
+                        {
+                            "type": "image",
+                            "x": 140, "y": 20, "width": 150, "height": 90,
+                            "config": {"image": "img/elevation.png"},
+                            "mark": "elevation-before"
+                        }
+                    ]
+                },
+                {
+                    "text": "Возвышение в зоне ПРУ",
+                    "x": 0, "y": 140, "width": 280, "height": 120,
+                    "gauges": [
+                        {
+                            "type": "image",
+                            "x": 140, "y": 20, "width": 150, "height": 90,
+                            "config": {"image": "img/pru.png"},
+                            "mark": "elevation-pru"
+                        }
+                    ]
+                },
+                {
+                    "text": "Возвышение за очисткой",
+                    "x": 0, "y": 280, "width": 280, "height": 120,
+                    "gauges": [
+                        {
+                            "type": "image",
+                            "x": 140, "y": 20, "width": 150, "height": 90,
+                            "config": {"image": "img/elevation.png"},
+                            "mark": "elevation-after"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "text": "Натяжение цепи",
-            "x": 300, "y": 20, "width": 280, "height": 150
+            "x": 300, "y": 20, "width": 280, "height": 150,
+            "gauges": [
+                {
+                    "type": "bar",
+                    "x": 140, "y": 100, "width": 240, "height": 30,
+                    "config": {"text": "Натяжение цепи", "bColor": "#fafafa"},
+                    "mark": "chain"
+                }
+            ],
+            "images": [
+                {
+                    "image": "img/chain.png",
+                    "x": 70, "y": 30
+                }
+            ]
         },
         {
             "text": "Цепь",
-            "x": 300, "y": 190, "width": 280, "height": 120
+            "x": 300, "y": 190, "width": 280, "height": 120,
+            "gauges": [
+                {
+                    "type": "bar",
+                    "x": 140, "y": 30, "width": 240, "height": 30,
+                    "config": {"text": "Скорость вала"},
+                    "mark": "chain-speed"
+                },
+                {
+                    "type": "bar",
+                    "x": 140, "y": 70, "width": 240, "height": 30,
+                    "config": {"text": "Упр. двиг."},
+                    "mark": "chain-control"
+                }
+            ]
         },
         {
-            "text": "Грохот",
-            "x": 300, "y": 330, "width": 280, "height": 120
-        },
-        {
-            "text": "Положение ПРУ",
-            "x": 300, "y": 470, "width": 280, "height": 120
-        },
-        {
-            "text": "Балка",
-            "x": 300, "y": 610, "width": 280, "height": 120
+            "x": 300, "y": 330,
+            "comment": "middle column bottom images",
+            "groups": [
+                {
+                    "text": "Грохот",
+                    "x": 0, "y": 0, "width": 280, "height": 120,
+                    "gauges": [
+                        {
+                            "type": "image",
+                            "x": 140, "y": 20, "width": 170, "height": 90,
+                            "config": {"image": "img/grohot.png"},
+                            "mark": "grohot"
+                        },
+                        {
+                            "type": "image",
+                            "x": 20, "y": 20, "width": 20, "height": 20,
+                            "config": {"image": "img/arrow.png"},
+                            "mark": "grohot-arrow"
+                        }
+                    ],
+                    "labels": [
+                        {
+                            "text": "", "mark": "grohot-lt", "size": "70%",
+                            "x": 50, "y": 20, "width": 50
+                        }
+                    ]
+                },
+                {
+                    "text": "Положение ПРУ",
+                    "x": 0, "y": 140, "width": 280, "height": 120,
+                    "gauges": [
+                        {
+                            "type": "image",
+                            "x": 140, "y": 20, "width": 150, "height": 90,
+                            "config": {"image": "img/pru.png"},
+                            "mark": "position-pru"
+                        }
+                    ]
+                },
+                {
+                    "text": "Балка",
+                    "x": 0, "y": 280, "width": 280, "height": 120,
+                    "gauges": [
+                        {
+                            "type": "image",
+                            "x": 140, "y": 20, "width": 250, "height": 90,
+                            "config": {"image": ["img/balka.png", "img/balka-lt.png", "img/balka-rt.png"]},
+                            "mark": "balka"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "text": "Датчики тока",
-            "x": 600, "y": 190, "width": 424, "height": 400
+            "x": 600, "y": 190, "width": 424, "height": 400,
+            "gauges": [
+                {
+                    "type": "bar",
+                    "x": 212, "y": 20, "width": 384, "height": 25,
+                    "config": {"text": "Баровый двигатель 1", "bColor": "#fafafa"},
+                    "mark": "cur-bar-1"
+                },
+                {
+                    "type": "bar",
+                    "x": 212, "y": 50, "width": 384, "height": 25,
+                    "config": {"text": "Баровый двигатель 2", "bColor": "#fafafa"},
+                    "mark": "cur-bar-2"
+                },
+                {
+                    "type": "bar",
+                    "x": 212, "y": 80, "width": 384, "height": 25,
+                    "config": {"text": "Транспортер отсева 1", "bColor": "#fafafa"},
+                    "mark": "cur-tr-ots-1"
+                },
+                {
+                    "type": "bar",
+                    "x": 212, "y": 110, "width": 384, "height": 25,
+                    "config": {"text": "Транспортер отсева 2", "bColor": "#fafafa"},
+                    "mark": "cur-tr-ots-2"
+                },
+                {
+                    "type": "bar",
+                    "x": 212, "y": 140, "width": 384, "height": 25,
+                    "config": {"text": "Поворотный транспортер 1", "bColor": "#fafafa"},
+                    "mark": "cur-pov-tr-1"
+                },
+                {
+                    "type": "bar",
+                    "x": 212, "y": 170, "width": 384, "height": 25,
+                    "config": {"text": "Поворотный транспортер 2", "bColor": "#fafafa"},
+                    "mark": "cur-pov-tr-2"
+                },
+                {
+                    "type": "bar",
+                    "x": 212, "y": 200, "width": 384, "height": 25,
+                    "config": {"text": "Транспортер балласта 1", "bColor": "#fafafa"},
+                    "mark": "cur-tr-bal-1"
+                },
+                {
+                    "type": "bar",
+                    "x": 212, "y": 230, "width": 384, "height": 25,
+                    "config": {"text": "Транспортер балласта 2", "bColor": "#fafafa"},
+                    "mark": "cur-tr-bal-2"
+                },
+                {
+                    "type": "bar",
+                    "x": 212, "y": 260, "width": 384, "height": 25,
+                    "config": {"text": "Вибратор грохота", "bColor": "#fafafa"},
+                    "mark": "cur-grohot"
+                },
+                {
+                    "type": "bar",
+                    "x": 212, "y": 290, "width": 384, "height": 25,
+                    "config": {"text": "Гидростанция", "bColor": "#fafafa"},
+                    "mark": "cur-hydro"
+                },
+                {
+                    "type": "bar",
+                    "x": 212, "y": 320, "width": 384, "height": 25,
+                    "config": {"text": "Бункер накопителя", "bColor": "#fafafa"},
+                    "mark": "cur-bunker"
+                },
+                {
+                    "type": "bar",
+                    "x": 212, "y": 350, "width": 384, "height": 25,
+                    "config": {"text": "Поперечный транспортер", "bColor": "#fafafa"},
+                    "mark": "cur-tr-poper"
+                }
+            ]
         },
         {
             "text": "Датчики давления",
-            "x": 600, "y": 610, "width": 424, "height": 120
-        }
-    ],
-    "images": [
-        {
-            "image": "img/chain.png",
-            "x": 370,
-            "y": 50
-        }
-    ],
-    "gauges": [
-        {
-            "type": "bar",
-            "x": 140, "y": 50, "width": 240, "height": 30,
-            "config": {"text": "Путь"},
-            "mark": "path"
-        },
-        {
-            "type": "bar",
-            "x": 140, "y": 90, "width": 240, "height": 30,
-            "config": {"text": "Скорость"},
-            "mark": "speed"
-        },
-        {
-            "type": "bar",
-            "x": 140, "y": 220, "width": 240, "height": 30,
-            "config": {"text": "Полный ток", "bColor": "#fafafa"},
-            "mark": "power-current"
-        },
-        {
-            "type": "bar",
-            "x": 140, "y": 260, "width": 240, "height": 30,
-            "config": {"text": "Напряжение в сети", "bColor": "#fafafa"},
-            "mark": "power-voltage"
-        },
-        {
-            "type": "image",
-            "x": 140, "y": 350, "width": 150, "height": 90,
-            "config": {"image": "img/elevation.png"},
-            "mark": "elevation-before"
-        },
-        {
-            "type": "image",
-            "x": 140, "y": 490, "width": 150, "height": 90,
-            "config": {"image": "img/pru.png"},
-            "mark": "elevation-pru"
-        },
-        {
-            "type": "image",
-            "x": 140, "y": 630, "width": 150, "height": 90,
-            "config": {"image": "img/elevation.png"},
-            "mark": "elevation-after"
-        },
-        {
-            "type": "image",
-            "x": 440, "y": 350, "width": 170, "height": 90,
-            "config": {"image": "img/grohot.png"},
-            "mark": "grohot"
-        },
-        {
-            "type": "image",
-            "x": 440, "y": 490, "width": 150, "height": 90,
-            "config": {"image": "img/pru.png"},
-            "mark": "position-pru"
-        },
-        {
-            "type": "image",
-            "x": 440, "y": 630, "width": 250, "height": 90,
-            "config": {"image": ["img/balka.png", "img/balka-lt.png", "img/balka-rt.png"]},
-            "mark": "balka"
-        },
-        {
-            "type": "image",
-            "x": 320, "y": 350, "width": 20, "height": 20,
-            "config": {"image": "img/arrow.png"},
-            "mark": "grohot-arrow"
-        },
-        {
-            "type": "bar",
-            "x": 440, "y": 220, "width": 240, "height": 30,
-            "config": {"text": "Скорость вала"},
-            "mark": "chain-speed"
-        },
-        {
-            "type": "bar",
-            "x": 440, "y": 260, "width": 240, "height": 30,
-            "config": {"text": "Упр. двиг."},
-            "mark": "chain-control"
-        },
-        {
-            "type": "bar",
-            "x": 812, "y": 210, "width": 384, "height": 25,
-            "config": {"text": "Баровый двигатель 1", "bColor": "#fafafa"},
-            "mark": "cur-bar-1"
-        },
-        {
-            "type": "bar",
-            "x": 812, "y": 240, "width": 384, "height": 25,
-            "config": {"text": "Баровый двигатель 2", "bColor": "#fafafa"},
-            "mark": "cur-bar-2"
-        },
-        {
-            "type": "bar",
-            "x": 812, "y": 270, "width": 384, "height": 25,
-            "config": {"text": "Транспортер отсева 1", "bColor": "#fafafa"},
-            "mark": "cur-bar-1"
-        },
-        {
-            "type": "bar",
-            "x": 812, "y": 300, "width": 384, "height": 25,
-            "config": {"text": "Транспортер отсева 2", "bColor": "#fafafa"},
-            "mark": "cur-bar-2"
-        },
-        {
-            "type": "bar",
-            "x": 812, "y": 330, "width": 384, "height": 25,
-            "config": {"text": "Поворотный транспортер 1", "bColor": "#fafafa"},
-            "mark": "cur-bar-1"
-        },
-        {
-            "type": "bar",
-            "x": 812, "y": 360, "width": 384, "height": 25,
-            "config": {"text": "Поворотный транспортер 2", "bColor": "#fafafa"},
-            "mark": "cur-bar-2"
-        },
-        {
-            "type": "bar",
-            "x": 812, "y": 390, "width": 384, "height": 25,
-            "config": {"text": "Транспортер балласта 1", "bColor": "#fafafa"},
-            "mark": "cur-bar-1"
-        },
-        {
-            "type": "bar",
-            "x": 812, "y": 420, "width": 384, "height": 25,
-            "config": {"text": "Транспортер балласта 2", "bColor": "#fafafa"},
-            "mark": "cur-bar-2"
-        },
-        {
-            "type": "bar",
-            "x": 812, "y": 450, "width": 384, "height": 25,
-            "config": {"text": "Вибратор грохота", "bColor": "#fafafa"},
-            "mark": "cur-grohot"
-        },
-        {
-            "type": "bar",
-            "x": 812, "y": 480, "width": 384, "height": 25,
-            "config": {"text": "Гидростанция", "bColor": "#fafafa"},
-            "mark": "cur-bar-2"
-        },
-        {
-            "type": "bar",
-            "x": 812, "y": 510, "width": 384, "height": 25,
-            "config": {"text": "Бункер накопителя", "bColor": "#fafafa"},
-            "mark": "cur-bar-1"
-        },
-        {
-            "type": "bar",
-            "x": 812, "y": 540, "width": 384, "height": 25,
-            "config": {"text": "Поперечный транспортер", "bColor": "#fafafa"},
-            "mark": "cur-bar-2"
-        },
-        {
-            "type": "bar",
-            "x": 812, "y": 630, "width": 384, "height": 25,
-            "config": {"text": "Вх. давление в гидравлике", "bColor": "#fafafa"},
-            "mark": "press-2"
-        },
-        {
-            "type": "bar",
-            "x": 812, "y": 660, "width": 384, "height": 25,
-            "config": {"text": "Вых. давление в гидравлике", "bColor": "#fafafa"},
-            "mark": "press-1"
-        },
-        {
-            "type": "bar",
-            "x": 812, "y": 690, "width": 384, "height": 25,
-            "config": {"text": "Общ. давление в гидравлике", "bColor": "#fafafa"},
-            "mark": "press-2"
-        },
-        {
-            "type": "bar",
-            "x": 440, "y": 120, "width": 240, "height": 30,
-            "config": {"text": "Натяжение цепи", "bColor": "#fafafa"},
-            "mark": "chain"
+            "x": 600, "y": 610, "width": 424, "height": 120,
+            "gauges": [
+                {
+                    "type": "bar",
+                    "x": 212, "y": 20, "width": 384, "height": 25,
+                    "config": {"text": "Вх. давление в гидравлике", "bColor": "#fafafa"},
+                    "mark": "press-1"
+                },
+                {
+                    "type": "bar",
+                    "x": 212, "y": 50, "width": 384, "height": 25,
+                    "config": {"text": "Вых. давление в гидравлике", "bColor": "#fafafa"},
+                    "mark": "press-2"
+                },
+                {
+                    "type": "bar",
+                    "x": 212, "y": 80, "width": 384, "height": 25,
+                    "config": {"text": "Общ. давление в гидравлике", "bColor": "#fafafa"},
+                    "mark": "press-3"
+                }
+            ]
         }
     ],
     "labels": [
-        {
-            "text": "", "mark": "piquet",
-            "x": 190, "y": 130, "width": 170
-        },
         {
             "text": "--:--:--", "mark": "clock",
             "x": 812, "y": 100, "width": 424, "height": 70, 
@@ -257,10 +298,6 @@
             "border": "2px solid #808080", "background": "#e8e5d4", "foreground": "black",
             "url": "ver2/finish-action",
             "confirmation": "#{areyousure}"
-        },
-        {
-            "text": "", "mark": "grohot-lt", "size": "70%",
-            "x": 350, "y": 350, "width": 50
         }
     ]
 }

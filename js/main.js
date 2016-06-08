@@ -38,12 +38,14 @@ Trainz.prototype.reloadOrLoad = function(fileName, dataFeed, locale) {
 Trainz.prototype.loadJson = function(fileName) {
     var res = $.ajax(fileName, {
         async: false,
+        cache: false,
         dataType: 'json'
     });
     return JSON.parse(res.responseText);
 }
 
 Trainz.prototype.process = function(data) {
+    this.unwrapGroups(data);
     $('body').css('background', data.background);
     if (typeof(data.title) != 'undefined') {
         $('#header').text(this.localize(data.title));
@@ -63,6 +65,59 @@ Trainz.prototype.process = function(data) {
     if (typeof(this.timer) == 'undefined') {
         var updater = this;
         this.timer = setInterval(function() {updater.update()}, this.config.interval);
+    }
+}
+
+Trainz.prototype.unwrapGroups = function(data) {
+    var groups = [];
+    this.listGroups(groups, data, 0, 0);
+    this.copyFromGroups(data, groups);
+}
+
+Trainz.prototype.listGroups = function(list, data, offsetX, offsetY) {
+    if (typeof(data['groups']) == 'undefined') {
+        return;
+    }
+    var groups = data['groups'];
+    //delete data['groups'];
+    for (var i in groups) {
+        var g = groups[i];
+        g.x += offsetX;
+        g.y += offsetY;
+        this.listGroups(list, g, g.x, g.y);
+        list.push(g);
+    }
+}
+
+Trainz.prototype.copyFromGroups = function(data, groups) {
+    for (var gi in groups) {
+        var g = groups[gi];
+        this.transferFromGroup(data, g, 'labels');
+        this.transferFromGroup(data, g, 'gauges');
+        this.transferFromGroup(data, g, 'images');
+        this.transferFromGroup(data, g, 'groups');
+    }
+}
+
+Trainz.prototype.transferFromGroup = function(data, group, key) {
+    if (typeof(group[key]) == 'undefined') {
+        return;
+    }
+    if (typeof(data[key]) == 'undefined') {
+        data[key] = [];
+    }
+    var items = group[key];
+    for (var i in items) {
+        var item = items[i];
+        if (key != 'groups') {
+            if (typeof(item['x']) != 'undefined') {
+                item.x += group.x;
+            }
+            if (typeof(item['y']) != 'undefined') {
+                item.y += group.y;
+            }
+        }
+        data[key].push(item);
     }
 }
 
@@ -123,6 +178,9 @@ Trainz.prototype.addGroups = function(block, groups) {
     }
     for (var i in groups) {
         var group = groups[i];
+        if (typeof(group['text']) == 'undefined') {
+            continue;
+        }
         var elem = $('<span/>').css('display', 'inline-block');
         elem.attr('data-type', 'group');
         elem.css('border', '1px solid #bbbbbb');
