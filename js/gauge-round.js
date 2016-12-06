@@ -57,7 +57,7 @@ RoundGauge.prototype.drawFull = function(config) {
     this.drawFrame(ctx);
     this.drawColors(ctx, config);
     this.drawSteps(ctx, config);
-    this.drawPointer(config.min);
+    this.drawPointer('-');
 }
 
 RoundGauge.prototype.drawFrame = function(ctx) {
@@ -108,25 +108,30 @@ RoundGauge.prototype.drawSteps = function(ctx, config) {
 }
 
 RoundGauge.prototype.drawPointer = function(value) {
-    var valueT = value;
-    value = Math.max(value, this.min - this.outlie);
-    value = Math.min(value, this.max + this.outlie);
     var ctx = this.context;
     ctx.beginPath();
     ctx.arc(this.cx, this.cy, this.radiusPointer, 0, Math.PI * 2);
     ctx.closePath();
     ctx.fillStyle = this.bColor;
     ctx.fill();
-    ctx.beginPath();
-    ctx.moveTo(this.cx, this.cy);
-    ctx.lineTo(this.polarX(this.radiusPointer, value), this.polarY(this.radiusPointer, value));
-    ctx.strokeStyle = this.fColor;
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(this.cx, this.cy, Math.round(this.radiusPointer * 0.1), 0, Math.PI * 2);
-    ctx.closePath();
-    ctx.fillStyle = this.fColor;
-    ctx.fill();
+    var valueT = value;
+    if (typeof(value) != 'number') {
+        value = parseFloat(value);
+    }
+    if (Number.isFinite(value)) {
+        value = Math.max(value, this.min - this.outlie);
+        value = Math.min(value, this.max + this.outlie);
+        ctx.beginPath();
+        ctx.moveTo(this.cx, this.cy);
+        ctx.lineTo(this.polarX(this.radiusPointer, value), this.polarY(this.radiusPointer, value));
+        ctx.strokeStyle = this.fColor;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(this.cx, this.cy, Math.round(this.radiusPointer * 0.1), 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fillStyle = this.fColor;
+        ctx.fill();
+    }
     ctx.font = 'bold 14pt Sans Serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';

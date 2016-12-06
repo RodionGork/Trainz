@@ -112,7 +112,7 @@
             "x": 835, "y": 125, "width": 130
         },
         {
-            "text": "0", "mark": "water",
+            "text": "-", "mark": "water",
             "x": 750, "y": 655, "width": 80,
             "background": "#eee", "border": "1px solid #bbb"
         },

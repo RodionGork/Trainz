@@ -38,7 +38,7 @@ VertGauge.prototype.drawFull = function(config) {
     this.drawFrame(ctx);
     this.drawColors(ctx, config);
     this.drawSteps(ctx, config);
-    this.drawPointer(config.min);
+    this.drawPointer('-');
 }
 
 VertGauge.prototype.drawFrame = function(ctx) {
@@ -99,26 +99,31 @@ VertGauge.prototype.drawSteps = function(ctx, config) {
 }
 
 VertGauge.prototype.drawPointer = function(value) {
-    value = Math.max(value, this.min - this.outlie);
-    value = Math.min(value, this.max + this.outlie);
     var ctx = this.context;
-    var x = this.middle + 10;
-    var y = this.getY(value);
     ctx.fillStyle = this.bColor;
     ctx.fillRect(x - 1, 1, 14, this.h - 2);
-    ctx.fillStyle = this.fColor;
-    ctx.lineStyle = this.fColor;
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.moveTo(x + 8, this.getY(this.max - this.delta));
-    ctx.lineTo(x + 8, y);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x + 12, y - 7);
-    ctx.lineTo(x + 12, y + 7);
-    ctx.closePath();
-    ctx.fill();
+    if (typeof(value) != 'number') {
+        value = parseFloat(value);
+    }
+    if (Number.isFinite(value)) {
+        value = Math.max(value, this.min - this.outlie);
+        value = Math.min(value, this.max + this.outlie);
+        var x = this.middle + 10;
+        var y = this.getY(value);
+        ctx.fillStyle = this.fColor;
+        ctx.lineStyle = this.fColor;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(x + 8, this.getY(this.max - this.delta));
+        ctx.lineTo(x + 8, y);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + 12, y - 7);
+        ctx.lineTo(x + 12, y + 7);
+        ctx.closePath();
+        ctx.fill();
+    }
 }
 
 VertGauge.prototype.getY = function(value) {
