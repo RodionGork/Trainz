@@ -100,6 +100,7 @@ VertGauge.prototype.drawSteps = function(ctx, config) {
 
 VertGauge.prototype.drawPointer = function(value) {
     var ctx = this.context;
+    var x = this.middle + 10;
     ctx.fillStyle = this.bColor;
     ctx.fillRect(x - 1, 1, 14, this.h - 2);
     if (typeof(value) != 'number') {
@@ -108,7 +109,6 @@ VertGauge.prototype.drawPointer = function(value) {
     if (Number.isFinite(value)) {
         value = Math.max(value, this.min - this.outlie);
         value = Math.min(value, this.max + this.outlie);
-        var x = this.middle + 10;
         var y = this.getY(value);
         ctx.fillStyle = this.fColor;
         ctx.lineStyle = this.fColor;
