@@ -216,7 +216,9 @@ Trainz.prototype.addGauges = function(block, gauges) {
                     gauge.colors = gauge.colors.join(' ');
                 }
                 elem.attr('data-config', gauge.colors);
+                elem.attr('data-border', gauge.border || '');
                 this.applySize(elem, gauge.size);
+                this.updateGaugeRect(elem, '-');
                 break;
             case 'vertical':
                 elem.attr('data-type', 'gauge-vertical');
@@ -327,7 +329,13 @@ Trainz.prototype.updateGaugeRect = function(elem, value) {
     elem.text(value);
     if (typeof(value) != 'number') {
         elem.css('background', '');
+        var border = elem.attr('data-border');
+        if (border) {
+            elem.css('border', '1px solid ' + border);
+        }
         return;
+    } else {
+        elem.css('border', '');
     }
     if (color == null) {
         value *= 1;

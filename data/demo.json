@@ -26,6 +26,7 @@
             "type": "rect",
             "x": 512, "y": 450, "width": 80,
             "colors": [0, "#6f6", 50, "yellow", 80, "red", 100],
+            "border": "#aaa",
             "size": "140%",
             "mark": "fuel-2"
         },
@@ -39,6 +40,7 @@
         {
             "type": "oval",
             "x": 512, "y": 500, "width": 70, "height": 70,
+            "border": "#aaa",
             "size": "140%",
             "mark": "wind-force"
         },
