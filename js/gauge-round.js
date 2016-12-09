@@ -118,7 +118,7 @@ RoundGauge.prototype.drawPointer = function(value) {
     if (typeof(value) != 'number') {
         value = parseFloat(value);
     }
-    if (Number.isFinite(value)) {
+    if (!isNaN(value)) {
         value = Math.max(value, this.min - this.outlie);
         value = Math.min(value, this.max + this.outlie);
         ctx.beginPath();
